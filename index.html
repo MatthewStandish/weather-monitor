@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Weather Monitor</title>
+  </head>
+  <body>
+    <header>
+		<h1>Weather Forecast</h1>
+	</header>
+
+	<section>
+		<form>
+			<label for="location">Enter location:</label>
+			<input type="text" id="location" name="location" required>
+			<button type="submit">Get forecast</button>
+		</form>
+
+		<div id="forecast">
+			<h2>Today's Weather</h2>
+			<p>Date: <span id="date"></span></p>
+			<p>Temperature: <span id="temperature"></span></p>
+			<p>Conditions: <span id="conditions"></span></p>
+			<p>Wind Speed: <span id="wind-speed"></span></p>
+			<p>Humidity: <span id="humidity"></span></p>
+		</div>
+	</section>
+    <script src="assets/javascript/script.js"></script>
+  </body>
+</html>
