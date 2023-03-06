@@ -39,6 +39,55 @@ function displayCurrentWeather(data) {
     `;
 }
 
+function displayForecast(data) {
+  var forecastHTML = "";
+  for (var i = 0; i < data.list.length - 1; i += 8) {
+    var forecastData = data.list[i];
+    var fahrenheitTemp = (forecastData.main.temp_max * 9) / 5 + 32;
+    forecastHTML += `
+          <div class="col">
+            <div class="card bg-primary text-white">
+              <div class="card-body p-2">
+                <h5>${new Date(forecastData.dt_txt).toLocaleDateString()}</h5>
+                <p><img src="https://openweathermap.org/img/w/${
+                  forecastData.weather[0].icon
+                }.png" alt="${forecastData.weather[0].main}" /></p>
+                <p>Temp: ${fahrenheitTemp.toFixed(1)}&deg;F</p>
+                <p>Humidity: ${forecastData.main.humidity}%</p>
+                <p>Wind Speed: ${forecastData.wind.speed.toFixed(1)} MPH</p>
+              </div>
+            </div>
+          </div>
+        `;
+  }
+  forecastEl.innerHTML = forecastHTML;
+}
+
+var searchHistoryEl = document.querySelector("#search-history");
+
+function displaySearchHistory() {
+  var searchHistoryEl = document.querySelector("#search-history");
+  searchHistoryEl.innerHTML = "";
+
+  for (var i = 0; i < searchHistory.length; i++) {
+    var liEl = document.createElement("li");
+    liEl.textContent = searchHistory[i];
+    searchHistoryEl.appendChild(liEl);
+  }
+
+  var clearBtn = document.createElement("button");
+  clearBtn.textContent = "Clear Search History";
+  clearBtn.setAttribute("id", "clear-history");
+  searchHistoryEl.appendChild(clearBtn);
+
+  clearBtn.addEventListener("click", function () {
+    searchHistory = [];
+    localStorage.setItem("search", JSON.stringify(searchHistory));
+    displaySearchHistory();
+    clearBtn.style.display = "none";
+  });
+}
+
 function displayError(message) {
   var errorEl = document.querySelector(".error");
   if (errorEl) {
@@ -50,27 +99,40 @@ function displayError(message) {
   currentWeatherEl.appendChild(errorEl);
 }
 
+searchHistoryEl.addEventListener("click", function (event) {
+  if (event.target.matches("#clear-history")) {
+    localStorage.removeItem("search");
+    searchHistory = [];
+    displaySearchHistory();
+  }
+});
+
 searchBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    var cityInput = searchInput.value.trim();
-    if (!cityInput) {
-      displayError("Please enter a city name");
-      return;
-    }
-    var city = "";
-    var countryCode = "";
-    if (cityInput.includes(",")) {
-      var parts = cityInput.split(",");
-      city = parts[0].trim();
-      countryCode = parts[1].trim().toUpperCase();
-    } else {
-      city = cityInput;
-    }
+  event.preventDefault();
+  var cityInput = searchInput.value.trim();
+  var city = "";
+  var countryCode = "";
+  if (cityInput.includes(",")) {
+    var parts = cityInput.split(",");
+    city = parts[0].trim();
+    countryCode = parts[1].trim().toUpperCase();
+  } else {
+    city = cityInput;
+  }
+  if (city) {
     getWeather(city, countryCode);
     searchHistory.push(cityInput);
     localStorage.setItem("search", JSON.stringify(searchHistory));
-    displaySearchHistory();
     searchInput.value = "";
-    currentWeatherEl.removeChild(currentWeatherEl.lastChild);
-  });
-  
+
+    if (searchHistory.length > 0) {
+      displaySearchHistory();
+    }
+  } else {
+    displayError("Please enter a city name");
+  }
+});
+
+if (searchHistory.length > 0) {
+  displaySearchHistory();
+}
