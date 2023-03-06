@@ -29,3 +29,26 @@ function getWeather(city) {
     });
 }
 
+function displayCurrentWeather(data) {
+    var fahrenheitTemp = (data.main.temp * 9) / 5 + 32;
+    currentWeatherEl.innerHTML = `
+      <h2>${data.name} (${new Date().toLocaleDateString()})</h2>
+      <div>Temperature: ${fahrenheitTemp.toFixed(1)} &deg;F</div>
+      <div>Humidity: ${data.main.humidity}%</div>
+      <div>Wind Speed: ${data.wind.speed.toFixed(1)} MPH</div>
+    `;
+  }
+
+searchBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  var city = searchInput.value.trim();
+  if (city) {
+    getWeather(city);
+    searchHistory.push(city);
+    localStorage.setItem("search", JSON.stringify(searchHistory));
+    displaySearchHistory();
+    searchInput.value = "";
+  } else {
+    alert("Please enter a city name");
+  }
+});
