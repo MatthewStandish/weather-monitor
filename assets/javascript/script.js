@@ -39,16 +39,30 @@ function displayCurrentWeather(data) {
     `;
   }
 
-searchBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  var city = searchInput.value.trim();
-  if (city) {
-    getWeather(city);
-    searchHistory.push(city);
-    localStorage.setItem("search", JSON.stringify(searchHistory));
-    displaySearchHistory();
-    searchInput.value = "";
-  } else {
-    alert("Please enter a city name");
+
+  function displayError(message) {
+    var errorEl = document.querySelector(".error");
+    if (errorEl) {
+      errorEl.remove();
+    }
+    errorEl = document.createElement("div");
+    errorEl.classList.add("error");
+    errorEl.textContent = message;
+    currentWeatherEl.appendChild(errorEl);
   }
-});
+  
+  searchBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    var city = searchInput.value.trim();
+    if (city) {
+      currentWeatherEl.innerHTML = "";
+      getWeather(city);
+      searchHistory.push(city);
+      localStorage.setItem("search", JSON.stringify(searchHistory));
+      displaySearchHistory();
+      searchInput.value = "";
+    } else {
+      displayError("Please enter a city name");
+    }
+  });
+  
