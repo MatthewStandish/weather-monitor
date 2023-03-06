@@ -80,6 +80,10 @@ function displaySearchHistory() {
   clearBtn.setAttribute("id", "clear-history");
   searchHistoryEl.appendChild(clearBtn);
 
+  if (searchHistory.length === 0) {
+    clearBtn.style.display = "none";
+  }
+
   clearBtn.addEventListener("click", function () {
     searchHistory = [];
     localStorage.setItem("search", JSON.stringify(searchHistory));
