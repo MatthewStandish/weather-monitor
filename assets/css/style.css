@@ -2,6 +2,7 @@
   --black: #0f0a0a;
   --white: #f5efed;
   --blue: #0353a4;
+  --big: 72px;
 }
 
 * {
@@ -28,7 +29,7 @@ h1 {
   display: flex;
   justify-content: center;
   padding: 25px;
-  font-size: 75px;
+  font-size: 72px;
   color: var(--white);
   text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
 }
@@ -36,7 +37,7 @@ h1 {
 .search-bar {
   display: flex;
   justify-content: center;
-  
+  margin-left: 35px;
 }
 
 #city-input {
@@ -44,7 +45,6 @@ h1 {
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  margin-top: 25px;
   text-align: center;
   width: 50%;
   max-width: 500px;
@@ -53,6 +53,13 @@ h1 {
 
 #search-btn {
   border: none;
+  margin-left: 5px;
+  mix-blend-mode: multiply;
+  background-color: transparent;
+}
+
+#search-btn:hover {
+  cursor: pointer;
 }
 
 .error {
@@ -67,16 +74,17 @@ h1 {
   align-items: center;
   color: var(--white);
   padding: 25px;
-  font-size: x-large;
+  font-size: 32px;
   margin-bottom: 20px;
 }
 
 #forecast {
+  margin: 5px;
   display: flex;
   justify-content: space-evenly;
   text-align: center;
   color: var(--white);
-  font-size: x-large;
+  font-size: 24px;
 }
 
 #search-history,
@@ -85,4 +93,65 @@ h1 {
   align-items: center;
   list-style: none;
   flex-direction: column;
+}
+
+#search-history {
+  margin-top: 20px;
+  color: var(--white);
+  font-size: 24px;
+}
+
+#clear-history {
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+  mix-blend-mode: multiply;
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#clear-history:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background-size: cover;
+  }
+
+  h1 {
+    font-size: var(--big);
+    padding: 10px;
+    text-align: center;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  #city-input {
+    width: 80%;
+    max-width: none;
+    margin-bottom: 10px;
+  }
+
+  #forecast {
+    flex-direction: column;
+    margin: 5px;
+  }
+
+  #search-history {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #clear-history {
+    margin-bottom: 20px;
+  }
 }
