@@ -54,7 +54,8 @@ h1 {
 #search-btn {
   border: none;
   margin-left: 5px;
-  mix-blend-mode: multiply;
+  display: flex;
+  align-items: center;
   background-color: transparent;
 }
 
@@ -100,17 +101,18 @@ h1 {
   color: var(--white);
   font-size: 24px;
   cursor: pointer;
+  padding-bottom: 10px;
 }
 
 #clear-history {
-  padding: 10px;
+  padding: 5px;
   border: none;
   margin-top: 10px;
-  mix-blend-mode: multiply;
   background-color: var(--blue);
+  font-family: "oswald", sans-serif;
   color: var(--white);
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 #clear-history:hover {
@@ -119,7 +121,12 @@ h1 {
 
 @media only screen and (max-width: 768px) {
   body {
-    background-size: cover;
+    background-color: #6195e9;
+    background-image: linear-gradient(180deg, #6195e9 0%, #ff958c 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+    background-attachment: fixed;
+    font-family: "Oswald", sans-serif;
   }
 
   h1 {
@@ -152,10 +159,13 @@ h1 {
     text-align: center;
   }
 
+  h5 {
+    margin-top: 20px;
+  }
+
   li {
     cursor: pointer;
   }
-  
 
   #clear-history {
     margin-bottom: 20px;
