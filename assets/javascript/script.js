@@ -139,4 +139,11 @@ searchBtn.addEventListener("click", function (event) {
 
 if (searchHistory.length > 0) {
   displaySearchHistory();
+  searchHistoryEl.addEventListener("click", function (event) {
+    if (event.target.matches("li")) {
+      var searchText = event.target.textContent.trim();
+      searchInput.value = searchText;
+    }
+  });
+  
 }

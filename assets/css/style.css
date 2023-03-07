@@ -99,6 +99,7 @@ h1 {
   margin-top: 20px;
   color: var(--white);
   font-size: 24px;
+  cursor: pointer;
 }
 
 #clear-history {
@@ -150,6 +151,11 @@ h1 {
     align-items: center;
     text-align: center;
   }
+
+  li {
+    cursor: pointer;
+  }
+  
 
   #clear-history {
     margin-bottom: 20px;
