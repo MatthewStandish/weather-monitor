@@ -9,11 +9,15 @@ Weather-Monitor is a simple weather site that displays real-time weather informa
 [Weather Monitor](https://matthewstandish.github.io/weather-monitor/ "Weather Monitor")
 
 ![homepage](assets/images/home.png)
+
 ![searched](assets/images/searched.png)
 
 ## Credits
 
-https://cssgradient.io/
+[CSS Gradient](https://cssgradient.io/ "CSS Gradient")
+
+[Open Weather API](https://openweathermap.org/forecast5 "Open Weather API")
+
 
 ## License
 
