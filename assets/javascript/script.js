@@ -45,16 +45,16 @@ function displayForecast(data) {
     var forecastData = data.list[i];
     var fahrenheitTemp = (forecastData.main.temp_max * 9) / 5 + 32;
     forecastHTML += `
-          <div class="col">
-            <div class="card bg-primary text-white">
-              <div class="card-body p-2">
+          <div>
+            <div>
+              <div class="forecast-cards">
                 <h5>${new Date(forecastData.dt_txt).toLocaleDateString()}</h5>
                 <p><img src="https://openweathermap.org/img/w/${
                   forecastData.weather[0].icon
                 }.png" alt="${forecastData.weather[0].main}" /></p>
-                <p>Temp: ${fahrenheitTemp.toFixed(1)}&deg;F</p>
-                <p>Humidity: ${forecastData.main.humidity}%</p>
-                <p>Wind Speed: ${forecastData.wind.speed.toFixed(1)} MPH</p>
+                <p class= "temp">${fahrenheitTemp.toFixed(1)}&deg;F</p>
+                <p class= "humidity">Humidity: ${forecastData.main.humidity}%</p>
+                <p class= "wind">Wind Speed: ${forecastData.wind.speed.toFixed(1)} MPH</p>
               </div>
             </div>
           </div>
